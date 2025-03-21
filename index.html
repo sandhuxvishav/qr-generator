@@ -7,70 +7,145 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f8f9fc;
             text-align: center;
             margin: 0;
             padding: 0;
         }
         .container {
-            max-width: 450px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logo {
+            width: 100px;
+            max-width: 120px;
+            margin-bottom: 20px;
         }
         h2 {
-            color: #333;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.5em;
         }
         input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
             font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #007BFF;
         }
         .btn {
-            width: 95%;
-            padding: 12px;
-            margin-top: 10px;
-            background-color: #007BFF;
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background: linear-gradient(135deg, #007BFF, #0056b3);
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
         }
         .btn:hover {
-            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 91, 187, 0.3);
         }
         #qrCode {
-            margin-top: 20px;
+            margin-top: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: inline-block;
+            max-width: 100%;
         }
         #qrUrl {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #555;
+            margin-top: 12px;
+            font-size: 15px;
+            color: #34495e;
             word-wrap: break-word;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 100%;
         }
         #downloadBtn {
             display: none;
-            margin-top: 10px;
-            background-color: #28a745;
+            background: linear-gradient(135deg, #28a745, #218838);
+        }
+        .footer {
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .feature-list {
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .feature-list h3 {
+            text-align: center;
+        }
+        .feature-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .feature-list ul li {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #7f8c8d;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/QR_icon.svg" alt="QR Logo" class="logo">
+        <!-- <img src="/mnt/data/A_sleek_and_modern_logo_for_a_QR_Code_Generator_ap.png" alt="QR Logo" class="logo"> -->
         <h2>QR Code Generator</h2>
         <input type="text" id="urlInput" placeholder="Enter URL" />
         <button class="btn" onclick="generateQRCode()">Generate QR Code</button>
         <div id="qrCode"></div>
         <p id="qrUrl"></p>
         <button class="btn" id="downloadBtn" onclick="downloadQRCode()">Download QR Code</button>
-        <p style="color: grey;">QR Code Reader is in development</p>
+    </div>
+    
+    <div class="container">
+        <h2>QR Code Reader (Coming Soon)</h2>
+        <p class="footer">We are working on a powerful QR Code Reader. Stay tuned!</p>
+    </div>
+    
+    <div class="feature-list">
+        <h3>Upcoming Features</h3>
+        <ul>
+            <li>Custom QR Code Designs</li>
+            <li>Dynamic QR Codes</li>
+            <li>QR Code Analytics</li>
+            <li>Multi-Format QR Codes (PDF, Images, etc.)</li>
+            <li>QR Code Scanner & Reader</li>
+            <li>Batch QR Code Generation</li>
+            <li>Editable QR Codes</li>
+            <li>Custom Logos on QR Codes</li>
+        </ul>
     </div>
 
     <script>
@@ -80,8 +155,8 @@
                 alert('Please enter a valid URL');
                 return;
             }
-            let qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(url)}`;
-            document.getElementById('qrCode').innerHTML = `<img id="qrImage" src="${qrImageUrl}" alt="QR Code">`;
+            let qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+            document.getElementById('qrCode').innerHTML = `<img id="qrImage" src="${qrImageUrl}" alt="QR Code" style="max-width: 100%;">`;
             document.getElementById('qrUrl').innerText = `${url}`;
             document.getElementById('downloadBtn').style.display = 'block';
         }
