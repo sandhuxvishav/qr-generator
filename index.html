@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn {
+            width: 95%;
+            padding: 12px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        #qrCode {
+            margin-top: 20px;
+        }
+        #qrUrl {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            word-wrap: break-word;
+        }
+        #downloadBtn {
+            display: none;
+            margin-top: 10px;
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>QR Code Generator</h2>
+        <input type="text" id="urlInput" placeholder="Enter URL" />
+        <button class="btn" onclick="generateQRCode()">Generate QR Code</button>
+        <div id="qrCode"></div>
+        <p id="qrUrl"></p>
+        <button class="btn" id="downloadBtn" onclick="downloadQRCode()">Download QR Code</button>
+        <p style="color: grey;">QR Code Reader is in development</p>
+    </div>
+
+    <script>
+        function generateQRCode() {
+            let url = document.getElementById('urlInput').value.trim();
+            if (url === '') {
+                alert('Please enter a valid URL');
+                return;
+            }
+            let qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(url)}`;
+            document.getElementById('qrCode').innerHTML = `<img id="qrImage" src="${qrImageUrl}" alt="QR Code">`;
+            document.getElementById('qrUrl').innerText = `${url}`;
+            document.getElementById('downloadBtn').style.display = 'block';
+        }
+        
+        function downloadQRCode() {
+            let qrImage = document.getElementById('qrImage');
+            if (qrImage) {
+                let link = document.createElement('a');
+                link.href = qrImage.src;
+                link.download = 'qr_code.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+    </script>
+</body>
+</html>
