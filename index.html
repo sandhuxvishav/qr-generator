@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Generator</title>
+    <link rel="icon" type="image/png" href="/mnt/data/A_sleek_and_modern_logo_for_a_QR_Code_Generator_ap.png">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -119,8 +120,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/QR_icon.svg" alt="QR Logo" class="logo">
-        <!-- <img src="/mnt/data/A_sleek_and_modern_logo_for_a_QR_Code_Generator_ap.png" alt="QR Logo" class="logo"> -->
+        <img src="/mnt/data/A_sleek_and_modern_logo_for_a_QR_Code_Generator_ap.png" alt="QR Logo" class="logo">
         <h2>QR Code Generator</h2>
         <input type="text" id="urlInput" placeholder="Enter URL" />
         <button class="btn" onclick="generateQRCode()">Generate QR Code</button>
@@ -147,6 +147,8 @@
             <li>Custom Logos on QR Codes</li>
         </ul>
     </div>
+
+    <p class="footer">Developed by <a href="https://github.com/sandhuxvishav" target="_blank">sandhuxvishav</a>. View source code on <a href="https://github.com/sandhuxvishav/qr-generator" target="_blank">GitHub</a>.</p>
 
     <script>
         function generateQRCode() {
